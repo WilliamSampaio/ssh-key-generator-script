@@ -8,7 +8,7 @@ echo "Hello $('whoami').";
 
 read -p "Please type your e-mail address: " email;
 
-ssh-keygen -t ed25519 -C $email;
+ssh-keygen -t ed25519 -C $email -f ~/.ssh/$email -N '';
 
 eval "$(ssh-agent -s)";
 
