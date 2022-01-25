@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# apt install xclip && curl;
-
-clear;
-
 echo "Hello $('whoami').";
 
 read -p "Please type your e-mail address: " email;
