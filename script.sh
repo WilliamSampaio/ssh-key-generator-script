@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt install xclip && curl;
+# apt install xclip && curl;
 
 clear;
 

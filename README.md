@@ -13,5 +13,5 @@ chmod -x script.sh
 ### 2. Run script
 
 ```console
-sudo /bin/bash script.sh
+/bin/bash script.sh
 ```
