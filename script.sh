@@ -20,13 +20,14 @@ while true; do
     echo;
     case $option in
         [Yy]* )
+            read -p "GitHub username: " username;
             read -p "Paste your GitHub Personal access token: " token;
             echo;
             hostname=$('hostname');
             ssh_key=$(<~/.ssh/$email.pub);
             data='{"title":"'$hostname'","key":"'$ssh_key'"}';
             response=$(curl -s -w "%{http_code}\n" \
-            -u WilliamSampaio:$token \
+            -u $username:$token \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/user/keys \
