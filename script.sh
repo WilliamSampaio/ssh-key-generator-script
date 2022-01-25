@@ -12,7 +12,7 @@ ssh-keygen -t ed25519 -C $email -f ~/.ssh/$email -N '';
 
 eval "$(ssh-agent -s)";
 
-ssh-add ~/.ssh/id_ed25519;
+ssh-add ~/.ssh/$email;
 
 clear;
 
@@ -27,7 +27,7 @@ while true; do
             read -p "Paste your GitHub Personal access token: " token;
             echo;
             hostname=$('hostname');
-            ssh_key=$(<~/.ssh/id_ed25519.pub);
+            ssh_key=$(<~/.ssh/$email.pub);
             data='{"title":"'$hostname'","key":"'$ssh_key'"}';
             response=$(curl -s -w "%{http_code}\n" \
             -u WilliamSampaio:$token \
@@ -45,8 +45,8 @@ while true; do
         [Nn]* )
             echo "Your SSH key is (Key already copied to clipboard):";
             echo;
-            cat ~/.ssh/id_ed25519.pub;
-            cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard;
+            cat ~/.ssh/$email.pub;
+            cat ~/.ssh/$email.pub | xclip -selection clipboard;
             exit 1;;
         * ) echo "Please answer yes or no.";;
     esac
