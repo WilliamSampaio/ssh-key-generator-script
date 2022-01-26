@@ -48,10 +48,10 @@ while true; do
             fi
             exit 1;;
         [Nn]* )
-            echo -e "Your SSH key is ${LIGHT_RED}(Key already copied to clipboard)${YELLOW}:";
+            echo -e "Your SSH key is:";
             echo -e $SSH_KEY_COLOR;
             cat ~/.ssh/$email.pub;
-            echo -e $YELLOW;
+            echo -e "${NO_COLOR}${LIGHT_RED}(Key already copied to clipboard)${YELLOW}";
             cat ~/.ssh/$email.pub | xclip -selection clipboard;
             exit 1;;
         * ) echo -e "${LIGHT_RED}Please answer yes or no.${YELLOW}";;
