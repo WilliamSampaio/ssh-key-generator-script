@@ -12,12 +12,10 @@ clear;
 echo -e "${YELLOW}Hello $('whoami').";
 read -p "Please type your e-mail address: " email;
 
-# ssh-keygen -t ed25519 -C $email -f ~/.ssh/$email -N '';
 ssh-keygen -t ed25519 -C $email;
 
 eval "$(ssh-agent -s)";
 
-# ssh-add ~/.ssh/$email;
 ssh-add ~/.ssh/id_ed25519;
 
 clear;
