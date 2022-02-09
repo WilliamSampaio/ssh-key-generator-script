@@ -12,11 +12,13 @@ clear;
 echo -e "${YELLOW}Hello $('whoami').";
 read -p "Please type your e-mail address: " email;
 
-ssh-keygen -t ed25519 -C $email -f ~/.ssh/$email -N '';
+# ssh-keygen -t ed25519 -C $email -f ~/.ssh/$email -N '';
+ssh-keygen -t ed25519 -C $email;
 
 eval "$(ssh-agent -s)";
 
-ssh-add ~/.ssh/$email;
+# ssh-add ~/.ssh/$email;
+ssh-add ~/.ssh/id_ed25519;
 
 clear;
 
@@ -32,7 +34,7 @@ while true; do
             read -p "Paste your GitHub Personal access token: " token;
             echo;
             hostname=$('hostname');
-            ssh_key=$(<~/.ssh/$email.pub);
+            ssh_key=$(<~/.ssh/id_ed25519.pub);
             data='{"title":"'$hostname'","key":"'$ssh_key'"}';
             response=$(curl -s -w "%{http_code}\n" \
             -u $username:$token \
@@ -50,9 +52,9 @@ while true; do
         [Nn]* )
             echo -e "Your SSH key is:";
             echo -e $SSH_KEY_COLOR;
-            cat ~/.ssh/$email.pub;
+            cat ~/.ssh/id_ed25519.pub;
             echo -e "${NO_COLOR}${LIGHT_RED}(Key already copied to clipboard)${YELLOW}";
-            cat ~/.ssh/$email.pub | xclip -selection clipboard;
+            cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard;
             exit 1;;
         * ) echo -e "${LIGHT_RED}Please answer yes or no.${YELLOW}";;
     esac
