@@ -13,7 +13,7 @@ If you want to automatically add the SSH Key to your github, you will need to pr
 ### 1. Add permission to execute
 
 ```console
-chmod -x script.sh
+chmod -x script.sh 
 ```
 
 ### 2. Run script
